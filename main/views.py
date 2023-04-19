@@ -1,8 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework import generics, permissions 
-from .serializers import TeacherSerializer, CategorySerializer
-from .models import Teacher, CourseCategory
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer
+from .models import Teacher, CourseCategory, Course
 
 
 class TeacherList(generics.ListCreateAPIView):
@@ -29,4 +29,9 @@ def teacher_login(request):
 
 class CategoryList(generics.ListCreateAPIView):
     queryset = CourseCategory.objects.all()
+    serializer_class = CategorySerializer 
+
+
+class CourseList(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
     serializer_class = CategorySerializer 
